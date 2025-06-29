@@ -1,5 +1,5 @@
 import {useState} from 'react';
-function Reset({click}){
+/*function Reset({click}){
     return <button className = "reset" onClick={click} > Reset</button>
 }
 function Square({value, onSquareClick}){
@@ -48,3 +48,67 @@ export default function Board() {
     </>
   );
 }
+  
+  /*function CounterDisplay({count}){
+        return <h1> Count: {count}</h1>
+    }
+    function IncrementButton({onClick}){
+        return <button onClick={onClick}>+1</button>
+    }
+    function DecrementButton({onClick}){
+        return <button onClick={onClick}>-1</button>
+    }
+export default function counter(){
+   const [count, setCount] = useState(0);
+   function handleIncrement(){
+    setCount(count + 1);
+   }
+   function handleDecrement(){
+    setCount(count-1);
+   }
+   function handleReset(){
+    setCount(0)
+   }
+   return(
+    <div style={{textAlign:'center', marginTop: '50px'}}>
+        <CounterDisplay count ={count} />
+        <IncrementButton onClick = {handleIncrement} />
+        <DecrementButton onClick={handleDecrement} />
+    </div>
+   );
+}
+   
+*/
+function Laughingemoji({count,onClick}){   
+return <h1 onClick = {onClick}>😀:{count}</h1>
+}
+
+function Coolemoji({count,onClick}){   
+return <h1 onClick = {onClick}>😎:{count}</h1>
+}
+function Reset({onClick}){
+return <button onClick = {onClick}> Reset</button>
+}
+
+export default function Emojiboard(){
+const [votes, setvotes] = useState(0);
+function handleVotes(){
+    setvotes(votes+1);
+}
+function resetVotes(){
+setvotes(0);
+console.log('hi')
+}
+return(
+<>
+<Laughingemoji count = {votes} onClick = {handleVotes}/>
+
+
+<Coolemoji count = {votes} onClick = {handleVotes}/>
+<Reset onClick = {resetVotes}/>
+</>
+
+
+);
+}
+
