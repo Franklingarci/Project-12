@@ -48,67 +48,81 @@ export default function Board() {
     </>
   );
 }
-  
-  /*function CounterDisplay({count}){
-        return <h1> Count: {count}</h1>
-    }
-    function IncrementButton({onClick}){
-        return <button onClick={onClick}>+1</button>
-    }
-    function DecrementButton({onClick}){
-        return <button onClick={onClick}>-1</button>
-    }
-export default function counter(){
-   const [count, setCount] = useState(0);
-   function handleIncrement(){
-    setCount(count + 1);
+  */
+ /*
+ function DisplayCounter({count}){
+    return <h1>Count:{count} </h1>
+ }
+ function Increment({onClick}){
+    return <button onClick = {onClick}>+1</button>
+ }
+ function Decrement({onClick}){
+    return <button onClick = {onClick}> -1</button>
+ }
+ function Reset({onClick}){
+    return <button onClick={onClick}> Reset</button>
+ }
+
+
+ export default function counter(){
+const [value, setvalue] = useState(0);
+if(value<=0){
+    <p style ={{color:"red"}}> Can't go lower than 0!</p>
+}
+function handleIncrement(){
+    setvalue(value+1)
+}
+function handleDecrement(){
+   if(value>0){
+     setvalue(value-1);
+}
+}
+function handleReset(){
+    setvalue(0)
+}
+
+    return(
+        <>
+        <DisplayCounter count = {value} />
+        <Increment  onClick={ handleIncrement}/>
+        <Decrement onClick={handleDecrement} />
+        <Reset onClick={handleReset} />
+        </>
+    );
+ }
+    */
+
+ function EmojiDisplay({emoji, vote}){
+    return<h3>{emoji}:{vote}</h3>
+ }
+ function Increment({onClick}){
+    return <button onClick={onClick}> +1</button>
+ }
+ export default function Emjoi(){
+   const [emojiList, setEmojilist] = useState([
+    {emoji: '😂', votes:0},
+    {emoji:'🤖', votes:0},
+    {emoji: '😎', votes:0},
+   ]);
+   function handleIncrement(index){
+        const copy = emojiList.slice();
+       copy[index].votes+=1;
+       setEmojilist(copy);
    }
-   function handleDecrement(){
-    setCount(count-1);
-   }
-   function handleReset(){
-    setCount(0)
-   }
+
    return(
-    <div style={{textAlign:'center', marginTop: '50px'}}>
-        <CounterDisplay count ={count} />
-        <IncrementButton onClick = {handleIncrement} />
-        <DecrementButton onClick={handleDecrement} />
+    <div>
+    <h2> Emoji Voter Board</h2>
+    {emojiList.map((emojiLists, index) => (
+        <>
+        <EmojiDisplay
+             key={index}
+          emoji={emojiLists.emoji}
+          vote={emojiLists.votes}
+        />
+        <Increment onClick={() => handleIncrement(index)}/>
+        </>
+    ))}
     </div>
    );
-}
-   
-*/
-function Laughingemoji({count,onClick}){   
-return <h1 onClick = {onClick}>😀:{count}</h1>
-}
-
-function Coolemoji({count,onClick}){   
-return <h1 onClick = {onClick}>😎:{count}</h1>
-}
-function Reset({onClick}){
-return <button onClick = {onClick}> Reset</button>
-}
-
-export default function Emojiboard(){
-const [votes, setvotes] = useState(0);
-function handleVotes(){
-    setvotes(votes+1);
-}
-function resetVotes(){
-setvotes(0);
-console.log('hi')
-}
-return(
-<>
-<Laughingemoji count = {votes} onClick = {handleVotes}/>
-
-
-<Coolemoji count = {votes} onClick = {handleVotes}/>
-<Reset onClick = {resetVotes}/>
-</>
-
-
-);
-}
-
+ }
