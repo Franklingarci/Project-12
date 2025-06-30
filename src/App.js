@@ -91,7 +91,7 @@ function handleReset(){
     );
  }
     */
-
+/*
  function EmojiDisplay({emoji, vote}){
     return<h3>{emoji}:{vote}</h3>
  }
@@ -126,3 +126,52 @@ function handleReset(){
     </div>
    );
  }
+   */
+
+ function Display(){
+    return <h1> Vote for Your Favorite Pizza Topping!</h1>
+ }
+ function DisplayVotes({name, votes}){
+    return <p> {name}: {votes}</p>
+ }
+ function Increment({onClick}){
+    return <button onClick = {onClick}>+1</button>
+ }
+ function ResetAll({onClick}){
+return <button onClick={onClick}> Reset All </button>
+ }
+export default function ToppingBoard(){
+    const [toppingList, setTopping] = useState([
+        {name:"Peperoni", votes:0},
+        {name:"Green Peppers", votes:0},
+        {name:"Pineapple", votes:0}
+    ])
+function handleVote(index){
+    const newArray = toppingList.slice();
+    newArray[index].votes+=1;
+    setTopping(newArray);
+}
+function reset(index){
+    const newArray = toppingList.slice();
+    newArray[index].votes = 0;
+    setTopping(newArray);
+}
+    return(
+        <div>
+            <Display/>
+        {toppingList.map(( topping,index) => (
+        <>
+        <DisplayVotes
+        key = {index}
+        name = {topping.name}
+        votes = {topping.votes}
+        />
+
+        <Increment onClick={() => handleVote(index)} />
+        </>
+    ))}
+    <ResetAll onClick={() => reset(index)}/>
+       
+      </div> 
+    );
+}
