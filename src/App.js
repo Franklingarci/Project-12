@@ -128,7 +128,7 @@ function handleReset(){
  }
    */
 
- function Display(){
+/* function Display(){
     return <h1> Vote for Your Favorite Pizza Topping!</h1>
  }
  function DisplayVotes({name, votes}){
@@ -151,11 +151,17 @@ function handleVote(index){
     newArray[index].votes+=1;
     setTopping(newArray);
 }
-function reset(index){
-    const newArray = toppingList.slice();
-    newArray[index].votes = 0;
-    setTopping(newArray);
-}
+function reset(){
+        const newArray = toppingList.map((topping) =>{
+            return{
+                name: topping.name,
+                votes:0
+            }
+        })
+        setTopping(newArray);    
+    }
+    
+
     return(
         <div>
             <Display/>
@@ -170,8 +176,26 @@ function reset(index){
         <Increment onClick={() => handleVote(index)} />
         </>
     ))}
-    <ResetAll onClick={() => reset(index)}/>
+    <ResetAll onClick={() => reset()}/>
        
       </div> 
     );
+}
+*/
+function Child({onNameChange}){
+    return <input type = "text" onChange={(event) => onNameChange(event.target.value)}></input>
+}
+export default  function parent(){
+    const [name, setName] = useState("");
+
+    function handleNameChange(newName){
+        setName(newName);
+    }
+    return(
+        <>
+        <Child onNameChange={handleNameChange}/>
+        <p> Your name is: {name}</p>
+        </>
+        
+    )
 }
